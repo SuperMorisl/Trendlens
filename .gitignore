@@ -1,5 +1,4 @@
+coingecko.csv
+crypto_storage/
 .env
 __pycache__/
-*.pyc
-crypto_storage
-.csv
