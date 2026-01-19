@@ -2,8 +2,9 @@ import feedparser
 import pandas as pd
 from datetime import datetime
 import requests
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-def google_news(coin="bitcoin"):
+def google_news(coin):
     url = f"https://news.google.com/rss/search?q={coin}+when:24h&hl=en-US&gl=US&ceid=US:en"
     
     feed = feedparser.parse(url)
@@ -19,7 +20,7 @@ def google_news(coin="bitcoin"):
         })
     
     df = pd.DataFrame(news_list)
-    df.to_csv('google.csv', index=False)
+    df.to_csv('{coin}.csv', index=False)
     return news_list
 
 
@@ -53,9 +54,25 @@ def coingacko_news():
          print(f"API request failed with status code: {response.status_code}")
 
 
+def get_trend_coins():
+    """ 
+
+    get the trending coins with coingecko to see the news and the rumors about the evolution of the market
+
+    """
+    file_path = 'coingecko.csv'
+        if os.path.exists(file_path):
+        df = pd.read_csv(file_path)
+        trend = df['id'].tolist()
+        return trend
+    else:
+        print("Le fichier coingecko.csv n'existe pas encore.")
+        return ["bitcoin", "ethereum", "solana", "cardano", "ripple"]
+
 
 
 # Test script
+analyzer = SentimentIntensityAnalyzer()
 articles = google_news("bitcoin")
 coingacko_news()
 if not articles:
