@@ -3,6 +3,7 @@ import pandas as pd
 from datetime import datetime
 import requests
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+import os
 
 def google_news(coin):
     url = f"https://news.google.com/rss/search?q={coin}+when:24h&hl=en-US&gl=US&ceid=US:en"
@@ -20,7 +21,8 @@ def google_news(coin):
         })
     
     df = pd.DataFrame(news_list)
-    df.to_csv('{coin}.csv', index=False)
+    file_path = os.path.join("crypto_storage", f"{coin}.csv")
+    df.to_csv(file_path, index=False)
     return news_list
 
 
@@ -53,6 +55,14 @@ def coingacko_news():
 
          print(f"API request failed with status code: {response.status_code}")
 
+def prepare_storage():
+    """
+    make the storage of crypto news more clean
+    """
+    folder_name = "crypto_storage"
+    if not os.path.exists(folder_name):
+        os.makedirs(folder_name)
+    return folder_name
 
 def get_trend_coins():
     """ 
@@ -61,7 +71,7 @@ def get_trend_coins():
 
     """
     file_path = 'coingecko.csv'
-        if os.path.exists(file_path):
+    if os.path.exists(file_path):
         df = pd.read_csv(file_path)
         trend = df['id'].tolist()
         return trend
@@ -72,12 +82,9 @@ def get_trend_coins():
 
 
 # Test script
-analyzer = SentimentIntensityAnalyzer()
-articles = google_news("bitcoin")
-coingacko_news()
-if not articles:
-    print("Toujours rien... Vérifie ta connexion internet.")
-else:
-    print(f"✅ {len(articles)} articles trouvés via RSS !")
-    for art in articles[:5]:
-        print(f"- {art['titre']} ({art['source']})")
+prepare_storage()
+coingacko_news() #getting trending coins in coingecko
+trending = get_trend_coins()
+for c in trending:
+    google_news(c)
+
