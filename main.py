@@ -4,6 +4,7 @@ from datetime import datetime
 import requests
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import os
+from ai import analyze_title_ai, generate_market_summary
 
 def google_news(coin):
     url = f"https://news.google.com/rss/search?q={coin}+when:24h&hl=en-US&gl=US&ceid=US:en"
@@ -82,9 +83,11 @@ def get_trend_coins():
 
 
 # Test script
-prepare_storage()
+storage = prepare_storage()
 coingacko_news() #getting trending coins in coingecko
 trending = get_trend_coins()
 for c in trending:
     google_news(c)
+
+generate_market_summary(storage)
 

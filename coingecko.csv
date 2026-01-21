@@ -1,16 +1,16 @@
 id,name,symbol,market_cap_rank,score
-oasis-network,Oasis,ROSE,347,0
-dusk-network,DUSK,DUSK,419,1
-bitcoin,Bitcoin,BTC,1,2
-pudgy-penguins,Pudgy Penguins,PENGU,132,3
-monad,Monad,MON,269,4
-the-sandbox,The Sandbox,SAND,190,5
-lighter,Lighter,LIT,173,6
-chainlink,Chainlink,LINK,21,7
-solana,Solana,SOL,7,8
-ethereum,Ethereum,ETH,2,9
-aster-2,Aster,ASTER,72,10
-river,River,RIVER,140,11
-fogo,Fogo,FOGO,402,12
-monero,Monero,XMR,17,13
-dash,Dash,DASH,103,14
+ethgas-2,ETHGas,GWEI,703,0
+seeker,Seeker,SKR,539,1
+river,River,RIVER,102,2
+hyperliquid,Hyperliquid,HYPE,33,3
+bitcoin,Bitcoin,BTC,1,4
+monero,Monero,XMR,20,5
+ethereum,Ethereum,ETH,2,6
+pudgy-penguins,Pudgy Penguins,PENGU,131,7
+axie-infinity,Axie Infinity,AXS,179,8
+solana,Solana,SOL,7,9
+tether-gold,Tether Gold,XAUT,50,10
+lighter,Lighter,LIT,167,11
+ondo-finance,Ondo,ONDO,64,12
+elsa,Elsa,ELSA,922,13
+dusk-network,DUSK,DUSK,397,14
